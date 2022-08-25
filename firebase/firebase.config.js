@@ -1,17 +1,19 @@
 import {initializeApp} from "firebase/app";
 import {getAuth} from "firebase/auth";
 import {getFirestore} from "firebase/firestore";
+import {getStorage} from "firebase/storage";
 
 const firebaseConfig = {
-	apiKey: "AIzaSyAi1z8duFbc1wbPTzviutTjDiJreZ_tJw0",
-	authDomain: "rnchatapp-852e1.firebaseapp.com",
-	projectId: "rnchatapp-852e1",
-	storageBucket: "rnchatapp-852e1.appspot.com",
-	messagingSenderId: "532046377825",
-	appId: "1:532046377825:web:c1af1ef7d5966e0184cb20",
+	apiKey: "AIzaSyCeSQ6z-fwZNJ6U7UDFhqQIdHh6tkmlEWE",
+	authDomain: "tuorgang.firebaseapp.com",
+	projectId: "tuorgang",
+	storageBucket: "tuorgang.appspot.com",
+	messagingSenderId: "186485655222",
+	appId: "1:186485655222:web:ec89cdf59e4f0fef468817",
 };
 
 const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
 export const db = getFirestore(app);
+export const storage = getStorage(app);

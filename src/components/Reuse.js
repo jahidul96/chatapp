@@ -1,21 +1,42 @@
-import {TextInput, View, StyleSheet, Pressable, Text} from "react-native";
+import {
+	TextInput,
+	View,
+	StyleSheet,
+	Pressable,
+	Text,
+	TouchableOpacity,
+} from "react-native";
 import {COLORS} from "../Color/Coolor";
 import MenuIcon from "react-native-vector-icons/Feather";
 import SearchIcon from "react-native-vector-icons/Feather";
 import ArrowLeft from "react-native-vector-icons/Feather";
 
-export const Input = ({placeholder, setValue, extraStyle}) => (
+export const Input = ({
+	placeholder,
+	setValue,
+	extraStyle,
+	textvalue,
+	secure,
+}) => (
 	<TextInput
 		placeholder={placeholder}
 		style={[styles.inputStyle, extraStyle]}
 		onChangeText={(text) => setValue(text)}
+		value={textvalue}
+		multiline
+		secureTextEntry={secure && true}
+		autoCapitalize="none"
 	/>
 );
 
 export const ButtonComp = ({text, btnClick}) => (
-	<Pressable style={styles.buttonCompStyle} onPress={btnClick}>
-		<Text>{text}</Text>
-	</Pressable>
+	<TouchableOpacity
+		style={styles.buttonCompStyle}
+		onPress={btnClick}
+		activeOpacity={0.7}
+	>
+		<Text style={styles.btntext}>{text}</Text>
+	</TouchableOpacity>
 );
 
 export const AccountTextComp = ({linkText, text, click}) => (
@@ -27,7 +48,13 @@ export const AccountTextComp = ({linkText, text, click}) => (
 	</View>
 );
 
-export const TopComp = ({text, chat, navigation}) => (
+export const TopComp = ({
+	text,
+	chat,
+	navigation,
+	setShowProfile,
+	showprofile,
+}) => (
 	<View style={styles.topcontentWrapper}>
 		<View style={styles.leftContentWrapper}>
 			{chat ? (
@@ -39,7 +66,9 @@ export const TopComp = ({text, chat, navigation}) => (
 					/>
 				</Pressable>
 			) : (
-				<MenuIcon name="menu" size={20} color={COLORS.white} />
+				<Pressable onPress={() => setShowProfile(!showprofile)}>
+					<MenuIcon name="menu" size={20} color={COLORS.white} />
+				</Pressable>
 			)}
 			<Text style={styles.text}>{text}</Text>
 		</View>
@@ -54,22 +83,26 @@ export const TopComp = ({text, chat, navigation}) => (
 const styles = StyleSheet.create({
 	// inputStyle
 	inputStyle: {
-		height: 35,
+		height: 40,
 		paddingHorizontal: 10,
 		borderRadius: 5,
 		borderWidth: 1,
 		borderColor: COLORS.primary,
-		marginBottom: 8,
+		marginBottom: 10,
 	},
 
 	// buttonCompStyle
 	buttonCompStyle: {
 		width: "100%",
-		height: 35,
+		height: 40,
 		backgroundColor: COLORS.primary,
 		borderRadius: 5,
 		justifyContent: "center",
 		alignItems: "center",
+	},
+	btntext: {
+		color: "#fff",
+		fontWeight: "700",
 	},
 
 	// accountTextCompStyle
